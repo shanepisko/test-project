@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import Link from './Link';
 
-const Footer = ({ selectedFilter, onSelectFilter }) => (
+const Footer = ({ selectedFilter, onSelectFilter, onClearAllCompleted }) => (
+ <div> 
   <p>
     Show:
     {" "}
@@ -20,11 +21,19 @@ const Footer = ({ selectedFilter, onSelectFilter }) => (
       Completed
     </Link>
   </p>
+  <p>
+    <Link 
+      onClick={ () => onClearAllCompleted() }>
+      Clear Compelted
+    </Link>
+  </p>
+  </div>
 );
 
 Footer.propTypes = {
   selectedFilter: PropTypes.string.isRequired,
-  onSelectFilter: PropTypes.func.isRequired
+  onSelectFilter: PropTypes.func.isRequired,
+  onClearAllCompleted: PropTypes.func.isRequired
 }
 
 export default Footer;

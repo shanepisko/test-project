@@ -7,10 +7,11 @@ function getFilteredTodos(todos, filter) {
       return todos;
     case 'SHOW_ACTIVE':
       // TODO
-      return todos;
+      return todos.filter(todo => !todo.completed);
     case 'SHOW_COMPLETED':
       // TODO
-      return todos;
+      console.log("testing");
+      return todos.filter(todo => todo.completed);
     default:
       return todos;
   }

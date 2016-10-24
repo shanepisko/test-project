@@ -17,6 +17,7 @@ class App extends Component {
     this.onAddTodo = this.onAddTodo.bind(this);
     this.onTodoClick = this.onTodoClick.bind(this);
     this.onSelectFilter = this.onSelectFilter.bind(this);
+    this.onClearAllCompleted = this.onClearAllCompleted.bind(this);
 
     this.onTodoDelete = this.onTodoDelete.bind(this);
   }
@@ -45,12 +46,23 @@ class App extends Component {
 
   onTodoDelete(todoId) {
     // TODO
+    this.setState({
+      todos: this.state.todos.filter((_, i) => i !== todoId)
+    });
   }
 
   onSelectFilter(filter) {
     this.setState({
       filter: filter
     });
+  }
+
+  onClearAllCompleted() {
+     var filteredTodos = this.state.todos.filter(function(t){
+      return t.completed == false;
+    });
+
+    this.setState({ todos: filteredTodos });
   }
 
   render() {
@@ -67,7 +79,8 @@ class App extends Component {
 
         <Footer
           selectedFilter={ this.state.filter }
-          onSelectFilter={ this.onSelectFilter } />
+          onSelectFilter={ this.onSelectFilter }
+          onClearAllCompleted={ this.onClearAllCompleted } />
       </div>
     );
   }
